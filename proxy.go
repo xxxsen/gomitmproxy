@@ -68,6 +68,7 @@ func NewProxy(config Config, opts ...Option) *Proxy {
 					return nil, errClientCertRequested
 				},
 			},
+			DialTLSContext: config.OnDialTLSContext,
 		},
 		timeout:         defaultTimeout,
 		invalidTLSHosts: map[string]bool{},

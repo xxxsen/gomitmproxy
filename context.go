@@ -108,6 +108,11 @@ func (c *Context) SetDeadline(t time.Time) error {
 	return c.parent.ctx.SetDeadline(t)
 }
 
+//DisableDeadline call when we want to process unmitmable stream
+func (c *Context) DisableDeadline() error {
+	return c.SetDeadline(time.Time{})
+}
+
 // GetProp gets context property (previously saved using SetProp)
 func (c *Context) GetProp(key string) (interface{}, bool) {
 	v, ok := c.props[key]

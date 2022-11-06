@@ -1,6 +1,7 @@
 package gomitmproxy
 
 import (
+	"context"
 	"crypto/tls"
 	"net"
 	"net/http"
@@ -68,6 +69,9 @@ type Config struct {
 
 	// OnUnknownStream is called when we met unmitmable stream
 	OnUnknownStream func(session *Session, origin net.Conn) error
+
+	// OnDialTLSContext call when we need to establish a tls connection
+	OnDialTLSContext func(ctx context.Context, network, addr string) (net.Conn, error)
 }
 
 type Option func(p *Proxy)
